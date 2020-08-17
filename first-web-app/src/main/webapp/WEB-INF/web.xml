@@ -7,12 +7,29 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>first-servlet</servlet-name>
-    <servlet-class>ru.gekkbrains.FirstServlet</servlet-class>
+    <servlet-name>mainPageServlet</servlet-name>
+    <servlet-class>ru.gekkbrains.MainPageServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>first-servlet</servlet-name>
-    <url-pattern>first-servlet</url-pattern>
+    <servlet-name>mainPage</servlet-name>
+    <url-pattern>main</url-pattern>
   </servlet-mapping>
+
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+
+<!--  <error-page>-->
+<!--    <exception-type>java.io.IOException</exception-type>-->
+<!--    <location>/error.jsp</location>-->
+<!--  </error-page>-->
+
 </web-app>
