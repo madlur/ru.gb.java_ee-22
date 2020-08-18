@@ -1,4 +1,4 @@
-package ru.gekkbrains;
+package ru.geekbrains;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +10,8 @@ import java.io.IOException;
 
 @WebServlet (name = "ErrorServlet", urlPatterns = "/error")
 public class ErrorServlet extends HttpServlet{
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-throw new IllegalStateException("ERROR");
-    }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    throw new IllegalStateException("ERROR");
+  }
 }

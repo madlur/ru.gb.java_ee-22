@@ -1,4 +1,4 @@
-package ru.gekkbrains;
+package ru.geekbrains;
 
 
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import java.io.IOException;
 @WebServlet (name = "mainPage", urlPatterns = "/main")
 public class MainPageServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("<h1> Main page </h1>");
-        getServletContext().getRequestDispatcher("/index.jsp").include(req,resp);
-    }
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    resp.getWriter().println("<h1> Main page </h1>");
+//    getServletContext().getRequestDispatcher("/index.jsp").include(req,resp);
+  }
 }
