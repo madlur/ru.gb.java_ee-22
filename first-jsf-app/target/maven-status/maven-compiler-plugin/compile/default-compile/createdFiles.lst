@@ -1,0 +1,10 @@
+ru\geekbrains\persist\Category.class
+ru\geekbrains\persist\Product.class
+ru\geekbrains\persist\ProductRepository.class
+ru\geekbrains\controller\CategoryController.class
+ru\geekbrains\controller\ProductController.class
+ru\geekbrains\persist\CategoryRepository.class
+ru\geekbrains\listener\AppBootstrapListener.class
+ru\geekbrains\controller\CartController.class
+ru\geekbrains\persist\CartRepository.class
+ru\geekbrains\persist\Cart.class

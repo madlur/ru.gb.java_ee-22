@@ -1,17 +1,45 @@
 package ru.geekbrains.persist;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.ServletContext;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
+@Named
 public class ProductRepository {
 
-    private final Connection conn;
+    private static final Logger logger = LoggerFactory.getLogger(ProductRepository.class);
 
-    public ProductRepository(Connection conn) throws SQLException {
-        this.conn = conn;
+    @Inject
+    private ServletContext context;
+
+    private Connection conn;
+
+    public ProductRepository() {
+    }
+
+    @PostConstruct
+    public void init() throws SQLException {
+        conn = (Connection) context.getAttribute("connection");
         createTableIfNotExists(conn);
+
+        if (this.findAll().isEmpty()) {
+            logger.info("No products in DB. Initializing.");
+
+           this.insert(new Product(-1L, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
+           this.insert(new Product(-1L, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
+           this.insert(new Product(-1L, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
+        }
     }
 
     public void insert(Product product) throws SQLException {

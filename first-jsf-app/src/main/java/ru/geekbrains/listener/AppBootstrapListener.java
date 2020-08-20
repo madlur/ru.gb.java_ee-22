@@ -31,7 +31,6 @@ public class AppBootstrapListener implements ServletContextListener {
         try {
             Connection conn = DriverManager.getConnection(jdbcConnectionString, username, password);
             sc.setAttribute("connection", conn);
-
         } catch (SQLException ex) {
             logger.error("", ex);
         }
