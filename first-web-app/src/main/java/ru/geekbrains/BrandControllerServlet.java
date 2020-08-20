@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet (name = "aboutPage", urlPatterns = "/about")
-public class AboutCompanyPageServlet extends HttpServlet {
+@WebServlet(name = "BrandControllerServlet", urlPatterns = {"/brands"})
+public class BrandControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/about.jsp").include(req, resp);
+        req.setAttribute("activePage", "brands");
+
+        getServletContext().getRequestDispatcher("/WEB-INF/brands.jsp").forward(req, resp);
     }
 }
