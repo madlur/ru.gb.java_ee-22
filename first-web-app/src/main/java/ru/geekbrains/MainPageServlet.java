@@ -13,7 +13,7 @@ public class MainPageServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    resp.getWriter().println("<h1> Main page </h1>");
-//    getServletContext().getRequestDispatcher("/index.jsp").include(req,resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").include(req,resp);
+
   }
 }

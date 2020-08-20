@@ -12,7 +12,7 @@ public class ProductPageServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    resp.getWriter().println("<h1> Product page </h1>");
-    getServletContext().getRequestDispatcher("/index.jsp").include(req,resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/product.jsp").include(req,resp);
+
   }
 }
