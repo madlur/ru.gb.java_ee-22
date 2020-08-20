@@ -2,7 +2,6 @@ package ru.geekbrains.persist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,6 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @ApplicationScoped
 @Named
@@ -36,9 +36,9 @@ public class ProductRepository {
         if (this.findAll().isEmpty()) {
             logger.info("No products in DB. Initializing.");
 
-           this.insert(new Product(-1L, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
-           this.insert(new Product(-1L, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
-           this.insert(new Product(-1L, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
+            this.insert(new Product(-1L, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
+            this.insert(new Product(-1L, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
+            this.insert(new Product(-1L, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
         }
     }
 
@@ -106,4 +106,17 @@ public class ProductRepository {
                     ");");
         }
     }
+
+
+    public void addtoCart(Product prod) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement(
+                "insert into cart(name, description, price) values (?, ?, ?);")) {
+            stmt.setString(1, prod.getName());
+            stmt.setString(2, prod.getDescription());
+            stmt.setBigDecimal(3, prod.getPrice());
+            stmt.execute();
+            delete(prod.getId());
+        }
+    }
+
 }

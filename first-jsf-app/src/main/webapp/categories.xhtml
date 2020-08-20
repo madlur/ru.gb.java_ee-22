@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>Shopping application</title>
+    <title>Category section</title>
 </h:head>
 
 <h:body>
@@ -21,40 +21,42 @@
 
     <div class="container">
         <div class="row py-2">
-            <h:form id="productsForm">
+            <h:form id="categoriesForm">
                 <div class="col-12">
-                    <h:commandButton value="Add product" styleClass="btn btn-primary"
-                                     action="#{productController.createProduct()}"/>
+                    <h:commandButton value="Add category" styleClass="btn btn-primary"
+                                     action="#{categoryController.createCategory}"/>
                 </div>
 
                 <div class="col-12">
-                    <h:dataTable value="#{productController.allProducts}"
+                    <h:dataTable value="#{categoryController.allCategory}"
                                  styleClass="table table-bordered my-2"
-                                 var="prod">
+                                 var="category">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{prod.id}
+                            #{category.id}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
-                            #{prod.name}
+                            <f:facet name="header">Родительская категория</f:facet>
+                            #{category.parentCategory}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{prod.description}
+                            <f:facet name="header">Категория</f:facet>
+                            #{category.categoryName}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{prod.price}
+                            <f:facet name="header">Описание</f:facet>
+                            #{category.categoryDescription}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Avaliable</f:facet>
+                            #{category.categoryExistence}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
                             <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{productController.editProduct(prod)}"/>
+                                             action="#{categoryController.editCategory(category)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{productController.deleteProduct(prod)}"/>
-                            <h:commandButton value="Purchase" styleClass="btn btn-success"
-                                             action="#{productRepository.addtoCart(prod)}">
+                                             action="#{categoryController.deleteCategory(category)}">
                                 <f:ajax event="click" render="productsForm"/>
                             </h:commandButton>
                         </h:column>
