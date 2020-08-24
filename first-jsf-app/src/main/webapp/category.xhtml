@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>New product</title>
+    <title>New category</title>
 </h:head>
 
 <h:body>
@@ -23,23 +23,27 @@
     <div class="container">
         <div class="row py-2">
             <div class="col-12">
-                <h:form id="productForm">
+                <h:form id="categoryForm">
                     <div class="form-group">
-                        <h:outputLabel value="Name"/>
-                        <h:inputText styleClass="form-control" id="name" value="#{productController.product.name}" placeholder="Enter name"/>
+                        <h:outputLabel value="ParentName"/>
+                        <h:inputText styleClass="form-control" id="parentCategory" value="#{categoryController.category.parentCategory}" placeholder="Enter parent name"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="CategoryName"/>
+                        <h:inputText styleClass="form-control" id="categoryName" value="#{categoryController.category.categoryName}" placeholder="Enter name"/>
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Description"/>
-                        <h:inputText styleClass="form-control" id="description" value="#{productController.product.description}" placeholder="Enter description"/>
+                        <h:inputText styleClass="form-control" id="categoryDescription" value="#{categoryController.category.categoryDescription}" placeholder="Enter description"/>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Price"/>
-                        <h:inputText p:type="number" styleClass="form-control" id="price" value="#{productController.product.price}" placeholder="Enter price">
+                        <h:outputLabel value="Avaliable"/>
+                        <h:inputText p:type="number" styleClass="form-control" id="price" value="#{categoryController.category.categoryExistence}" placeholder="Enter total">
                             <f:converter converterId="javax.faces.BigDecimal"/>
                         </h:inputText>
                     </div>
 
-                    <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{productController.saveProduct()}"/>
+                    <h:commandButton value="Save" styleClass="btn btn-primary" action="#{categoryController.saveCategory}"/>
                 </h:form>
             </div>
         </div>
