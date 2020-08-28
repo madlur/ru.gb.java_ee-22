@@ -48,7 +48,7 @@ public class OrderController implements Serializable {
 
     public void addToCart(Product product) {
         Order order = new Order();
-        order.setId(product.getId());
+        order.setId(null);
         order.setDescription(product.getDescription());
         order.setName(product.getName());
         order.setPrice(product.getPrice());

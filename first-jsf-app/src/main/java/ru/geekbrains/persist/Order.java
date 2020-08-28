@@ -1,9 +1,6 @@
 package ru.geekbrains.persist;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -13,6 +10,7 @@ import java.math.BigDecimal;
 public class Order implements Serializable {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(length = 128, nullable = false)
