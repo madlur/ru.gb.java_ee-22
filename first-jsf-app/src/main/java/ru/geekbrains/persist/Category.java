@@ -1,29 +1,32 @@
 package ru.geekbrains.persist;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
+import javax.persistence.*;
+import java.util.List;
 
-public class Category implements Serializable {
+@Entity
+@Table(name = "categories")
+public class Category {
 
-      private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String parentCategory;
+    @Column(length = 128, nullable = false)
+    private String name;
 
-    private String categoryName;
+    @OneToMany(
+            mappedBy = "category",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Product> products;
 
-    private String categoryDescription;
+    public Category() {
+    }
 
-    private BigDecimal categoryExistence;
-
-
-    public Category(){}
-
-    public Category(Long id, String parentCategory, String categoryName, String categoryDescription, BigDecimal categoryExistence) {
+    public Category(Long id, String name) {
         this.id = id;
-        this.parentCategory = parentCategory;
-        this.categoryName = categoryName;
-        this.categoryDescription = categoryDescription;
-        this.categoryExistence = categoryExistence;
+        this.name = name;
     }
 
     public Long getId() {
@@ -34,37 +37,20 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getParentCategory() {
-        return parentCategory;
+    public String getName() {
+        return name;
     }
 
-    public void setParentCategory(String parentCategory) {
-        this.parentCategory = parentCategory;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
-
-    public String getCategoryDescription() {
-        return categoryDescription;
-    }
-
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
-    }
-
-    public BigDecimal getCategoryExistence() {
-        return categoryExistence;
-    }
-
-    public void setCategoryExistence(BigDecimal categoryExistence) {
-        this.categoryExistence = categoryExistence;
-    }
-
 }
 

@@ -1,5 +1,6 @@
 package ru.geekbrains.controller;
 
+import ru.geekbrains.persist.CategoryRepository;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
 
@@ -17,6 +18,9 @@ public class ProductController implements Serializable {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
+    private CategoryRepository categoryRepository;
+
     private Product product;
 
     public Product getProduct() {
@@ -27,7 +31,7 @@ public class ProductController implements Serializable {
         this.product = product;
     }
 
-    public List<Product> getAllProducts() throws SQLException {
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
@@ -36,7 +40,7 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) throws SQLException {
+    public void deleteProduct(Product product) {
         productRepository.delete(product.getId());
     }
 
@@ -45,13 +49,25 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public String saveProduct() throws SQLException {
+    public String saveProduct() {
         if (product.getId() != null) {
             productRepository.update(product);
+            clear();
         } else {
             productRepository.insert(product);
+            clear();
         }
         return "/index.xhtml?faces-redirect=true";
     }
 
+    private void clear() {
+        product.setName(null);
+        product.setDescription(null);
+        product.setPrice(null);
     }
+
+    public Object getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+}

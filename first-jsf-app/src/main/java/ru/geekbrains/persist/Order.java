@@ -6,11 +6,11 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "products")
-public class Product implements Serializable {
+@Table(name = "orders")
+public class Order implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(length = 128, nullable = false)
@@ -22,18 +22,7 @@ public class Product implements Serializable {
     @Column
     private BigDecimal price;
 
-    @ManyToOne
-    private Category category;
-
-    public Product() {
-    }
-
-    public Product(Long id, String name, String description, BigDecimal price, Category category) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
+    public Order() {
     }
 
 
@@ -67,14 +56,6 @@ public class Product implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
 
